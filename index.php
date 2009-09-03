@@ -38,10 +38,8 @@ else if(isset($_GET['page']) && db_clean_text($_GET['page']) == 'login'){
 }
 else if(isset($_POST['action']) && db_clean_text($_POST['action']) == 'authenticate'){
 	//We are trying to authenticate
-	//$user = db_clean_text($_POST['uname']);
-	//$pass = db_clean_text($_POST['passwd']);
-	$otp = db_clean_text($_POST['otp']);
-	//if(authenticate($user, $pass)){
+	$user = db_clean_text($_POST['uname']);
+	$pass = db_clean_text($_POST['passwd']);
 	
 	//Lets make sure this form is valid
 	if(!secureform_test(db_clean_text($_POST['key']), "authenticate")){
@@ -50,7 +48,7 @@ else if(isset($_POST['action']) && db_clean_text($_POST['action']) == 'authentic
 		exit();
 	}
 	//Lets try to authenticate the user
-	else if(authenticate($otp)){
+	if(authenticate($user, $pass)){
 		$_SESSION['attendance_authenticate'] = "true";
 		$smarty->assign("url","./index.php?page=home");
 		$smarty->display('redirect.tpl');
