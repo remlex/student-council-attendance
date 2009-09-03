@@ -1,0 +1,10 @@
+About Student Council Attendance
+
+= Introduction =
+
+This web based tool was originally designed to manage the attendance records for a student council.  The system has business logic hard coded inside of the tool which may make it less usable by other organizations.
+
+
+= Details =
+
+More information to come later.
