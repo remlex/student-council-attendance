@@ -292,9 +292,9 @@
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 		{if $member_details[mysec].meeting_type == "General Business Meeting"}
-			<td><a href="http://www.speedcouncil.org/attendance/generalbusiness?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
+			<td><a href="./generalbusiness?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
 		{elseif $member_details[mysec].meeting_type == "Directors Meeting"}
-			<td><a href="http://www.speedcouncil.org/attendance/directors?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
+			<td><a href="./directors?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
 		{else}
 			<td>{$member_details[mysec].mdate}</td>
 		{/if}

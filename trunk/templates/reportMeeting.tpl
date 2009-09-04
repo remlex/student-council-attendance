@@ -46,7 +46,7 @@
 	</tr>
 {foreach from=$meetings item=member}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
-		<td><a href="http://speedcouncil.org/members?id={$member.member}">{$member.name}</a></td>
+		<td><a href="/members?id={$member.member}">{$member.name}</a></td>
 		<td>{$member.position}</td>
 		<td class="singlepicture">
 			{if $member.vote == 0}

@@ -21,9 +21,9 @@
 		{strip}
 		<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 			{if $type == 1}
-				<td><a href="http://www.speedcouncil.org/attendance/generalbusiness?id={$meeting.meeting}">{$meeting.mdate}</a></td>
+				<td><a href="/generalbusiness?id={$meeting.meeting}">{$meeting.mdate}</a></td>
 			{else if $type == 2}
-				<td><a href="http://www.speedcouncil.org/attendance/directors?id={$meeting.meeting}">{$meeting.mdate}</a></td>
+				<td><a href="/directors?id={$meeting.meeting}">{$meeting.mdate}</a></td>
 			{/if}
 			
 			<td>{$meeting.TotalPresent} of {$meeting.TotalMembers}</td>
