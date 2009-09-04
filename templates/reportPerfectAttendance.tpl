@@ -6,7 +6,7 @@
 	Congratulations and thanks go out to those members who have managed to attend every general business meeting thus far this semester:
 	<ul>
 	{foreach from=$people item=person}
-		<li><a href="http://www.speedcouncil.org/members?id={$person.member}">{$person.name}</a></li>
+		<li><a href="/members?id={$person.member}">{$person.name}</a></li>
 	{/foreach}
 	</ul>
 {/if}
