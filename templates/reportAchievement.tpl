@@ -1,8 +1,9 @@
+{config_load file=display.links.conf}
 
 <table>
 	<tr>
 		<td bgcolor="#dddddd" style="font-weight:bold;">Badge:</td>
-		<td bgcolor="#eeeeee"><img src="./achievements/{$achievement_details.image}" title="{$achievement_details.name}" /></td>
+		<td bgcolor="#eeeeee"><img src="{#image_achievement_picture#}{$achievement_details.image}" title="{$achievement_details.name}" /></td>
 	</tr>
 	<tr>
 		<td bgcolor="#dddddd" style="font-weight:bold;">Category:</td>
@@ -50,7 +51,7 @@
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 		<td>
-			<a href="/members?id={$achievements_earned[mysec].member_id}">{$achievements_earned[mysec].member_name}</a>
+			<a href="{#url_member_id#}{$achievements_earned[mysec].member_id}">{$achievements_earned[mysec].member_name}</a>
 		</td>
 	</tr>
 {/strip}
@@ -75,7 +76,7 @@
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 		<td>
-			<a href="/members?id={$achievements_in_progress[mysec].member_id}">{$achievements_in_progress[mysec].member_name}</a>
+			<a href="{#url_member_id#}{$achievements_in_progress[mysec].member_id}">{$achievements_in_progress[mysec].member_name}</a>
 		</td>
 		<td>{$achievements_in_progress[mysec].progress} of {$achievements_in_progress[mysec].goal}</td>
 	</tr>
@@ -100,7 +101,7 @@
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 		<td>
-			<a href="/members?id={$achievements_historical[mysec].member_id}">{$achievements_historical[mysec].member_name}</a>
+			<a href="{#url_member_id#}{$achievements_historical[mysec].member_id}">{$achievements_historical[mysec].member_name}</a>
 		</td>
 	</tr>
 {/strip}

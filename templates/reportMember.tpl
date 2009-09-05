@@ -1,3 +1,4 @@
+{config_load file=display.links.conf}
 
 <h2>Member Information</h2>
 <table>
@@ -66,8 +67,8 @@
 			</tr><tr>
 		{/if} 
 		<td bgcolor="{cycle values="#cccccc,#eeeeee"}">
-			<a href="/achievements?id={$achievement.id}">
-				<img src="./achievements/{$achievement.image}" title="{$achievement.name}" />
+			<a href="{#url_achievement_id#}{$achievement.id}">
+				<img src="{#image_achievement_picture#}{$achievement.image}" title="{$achievement.name}" />
 			</a>
 		</td>
 	{/foreach}
@@ -87,7 +88,7 @@
 		{assign var=filler value=$columncount-$temp}
 	{/if}
 	{section name=extra loop=$filler}
-		<td bgcolor="{cycle values="#cccccc,#eeeeee"}"><img src="./achievements/void.png" /></td>
+		<td bgcolor="{cycle values="#cccccc,#eeeeee"}"><img src="{#image_achievement_picture#}void.png" /></td>
 	{/section}
 	</tr>
 		
@@ -169,7 +170,7 @@
 {section name=mysec loop=$committee_manager}
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
-		<td><a href="/committees#committee_{$committee_manager[mysec].id}">{$committee_manager[mysec].name}</a></td>
+		<td><a href="{#url_committees#}#committee_{$committee_manager[mysec].id}">{$committee_manager[mysec].name}</a></td>
 		<td>{$committee_manager[mysec].description}</td>
 		<td>{$committee_manager[mysec].members}</td>
 	</tr>
@@ -205,7 +206,7 @@
 {section name=mysec loop=$committee_involvement}
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
-		<td><a href="/committees#committee_{$committee_involvement[mysec].committee_id}">{$committee_involvement[mysec].committee_name}</a></td>
+		<td><a href="{#url_committees#}#committee_{$committee_involvement[mysec].committee_id}">{$committee_involvement[mysec].committee_name}</a></td>
 		<td>{$committee_involvement[mysec].description}</td>
 		<td>{$committee_involvement[mysec].manager}</td>
 	</tr>
@@ -292,9 +293,9 @@
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 		{if $member_details[mysec].meeting_type == "General Business Meeting"}
-			<td><a href="./generalbusiness?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
+			<td><a href="{#url_meeting_general#}{$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
 		{elseif $member_details[mysec].meeting_type == "Directors Meeting"}
-			<td><a href="./directors?id={$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
+			<td><a href="{#url_meeting_directors#}{$member_details[mysec].meeting_id}">{$member_details[mysec].mdate}</a></td>
 		{else}
 			<td>{$member_details[mysec].mdate}</td>
 		{/if}

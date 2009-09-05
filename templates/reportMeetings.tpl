@@ -1,3 +1,4 @@
+{config_load file=display.links.conf}
 
 {if $type == 1}
 	<h2>General Business Meetings</h2>
@@ -21,9 +22,9 @@
 		{strip}
 		<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 			{if $type == 1}
-				<td><a href="/generalbusiness?id={$meeting.meeting}">{$meeting.mdate}</a></td>
+				<td><a href="{#url_meeting_general#}{$meeting.meeting}">{$meeting.mdate}</a></td>
 			{else if $type == 2}
-				<td><a href="/directors?id={$meeting.meeting}">{$meeting.mdate}</a></td>
+				<td><a href="{#url_meeting_directors#}{$meeting.meeting}">{$meeting.mdate}</a></td>
 			{/if}
 			
 			<td>{$meeting.TotalPresent} of {$meeting.TotalMembers}</td>
