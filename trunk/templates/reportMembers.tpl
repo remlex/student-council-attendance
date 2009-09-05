@@ -1,4 +1,4 @@
-
+{config_load file=display.links.conf}
 
 <table>
 {strip}
@@ -13,7 +13,7 @@
 {section name=mysec loop=$members}
 {strip}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
-		<td><a href="./display.php?id={$members[mysec].id}">{$members[mysec].name}</a></td>
+		<td><a href="{#url_member_id#}{$members[mysec].id}">{$members[mysec].name}</a></td>
 		<td>{$members[mysec].position}</td>
 		{if $members[mysec].position == "Voting Society" || $members[mysec].position == "Non-Voting Society"}
 			<td bgcolor="#7ACAFF">N/A</td>

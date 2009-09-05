@@ -1,3 +1,5 @@
+{config_load file=display.links.conf}
+
 <h2>Achievements</h2>
 
 {foreach from=$achievements_active item=category}
@@ -17,8 +19,8 @@
 		{strip}
 		<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 			<td>
-				<a href="/achievements?id={$achievement.id}">
-					<img src="./achievements/{$achievement.image}" title="{$achievement.name}" />
+				<a href="{#url_achievement_id#}{$achievement.id}">
+					<img src="{#image_achievement_picture#}{$achievement.image}" title="{$achievement.name}" />
 				</a>
 			</td>
 			<td>{$achievement.name}</td>
@@ -55,8 +57,8 @@
 		{strip}
 		<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
 			<td>
-				<a href="/achievements?id={$achievement.id}">
-					<img src="./achievements/{$achievement.image}" title="{$achievement.name}" />
+				<a href="{#url_achievement_id#}{$achievement.id}">
+					<img src="{#image_achievement_picture#}{$achievement.image}" title="{$achievement.name}" />
 				</a>
 			</td>
 			<td>{$achievement.name}</td>

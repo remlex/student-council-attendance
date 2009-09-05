@@ -1,3 +1,4 @@
+{config_load file=display.links.conf}
 {config_load file=images.conf section="vote"}
 
 <h2>{$info.meeting_type}<h2>
@@ -46,7 +47,7 @@
 	</tr>
 {foreach from=$meetings item=member}
 	<tr bgcolor="{cycle values="#eeeeee,#dddddd"}">
-		<td><a href="/members?id={$member.member}">{$member.name}</a></td>
+		<td><a href="{#url_member_id#}{$member.member}">{$member.name}</a></td>
 		<td>{$member.position}</td>
 		<td class="singlepicture">
 			{if $member.vote == 0}
