@@ -46,6 +46,10 @@
 			<br />
 			Default Status:<select name=status>{html_options options=$status selected=$current_status}</select>
 			<br />
+			Major: <select name=major>{html_options options=$majors selected=$current_major}</select>
+			<br />
+			Student ID: <INPUT type="text" name="student_id" value="{$current_student_id}">
+			<br />
 			
 			<INPUT type="hidden" name="key" value="{php}echo secureform_add_pk('updateMember', 60, $this->get_template_vars('current_id')){/php}">
 			<input type="hidden" name="id" value="{$current_id}">

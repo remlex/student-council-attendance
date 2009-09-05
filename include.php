@@ -1,9 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------------------//
-// CONNECT TO THE DATABASE
-//----------------------------------------------------------------------------------------------------------------------------------//
-$link = mysql_connect('localhost', 'root', '') or die('Could not connect to mysql server.' );
-mysql_select_db('attendance', $link) or die('Could not select database.');
+include_once './configs/db.php'; //Connects to the database
 
 
 
@@ -94,6 +90,16 @@ function authenticate($user, $pass){
 //----------------------------------------------------------------------------------------------------------------------------------//
 // RETREIVE INFORMATION FOR USE IN DROP DOWN LISTS
 //----------------------------------------------------------------------------------------------------------------------------------//
+function retreiveMajorValues(){
+	$query = "SELECT `id`, `name` FROM `major` ORDER BY `id`;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_row($result)){
+		$val[$row[0]] = $row[1];
+	}
+	return $val;
+}
+
 function retreivePositionValues(){
 	$query = "SELECT `id`, `name` FROM `position` ORDER BY `id`;";
 	$result = mysql_query($query);
@@ -271,7 +277,7 @@ function retreiveInactiveMembers(){
 }
 
 function retreiveMember($id){
-	$query = "SELECT `id`, `name`, `ulink`, `position`, `status` FROM members WHERE `id` = " . $id . ";";
+	$query = "SELECT `id`, `name`, `ulink`, `position`, `status`, `major`, `student_id` FROM members WHERE `id` = " . $id . ";";
 	$result = mysql_query($query);
 	$row = mysql_fetch_assoc($result);
 	return $row;
@@ -617,13 +623,16 @@ function deleteMeeting($id){
 //----------------------------------------------------------------------------------------------------------------------------------//
 // UPDATE / ADD A MEMBER (We don't delete members, we make them inactive...)
 //----------------------------------------------------------------------------------------------------------------------------------//
-function addMember($name, $ulink, $position, $status){
-	$query = "INSERT INTO members (`name`, `ulink`, `position`, `status`) VALUES('" . $name . "', '" . $ulink . "', " . $position . ", " . $status . ");";
+function addMember($name, $ulink, $position, $status, $major, $student_id){
+	$query  = "INSERT INTO members (`name`, `ulink`, `position`, `status`, `major`, `student_id`) ";
+	$query .= "VALUES('" . $name . "', '" . $ulink . "', " . $position . ", " . $status . ", " . $major . ", " . $student_id . ");";
 	$result = mysql_query($query);
 }
 
-function updateMember($id, $name, $ulink, $position, $status){
-	$query = "UPDATE members SET `name` = '" . $name . "', `ulink` = '" . $ulink . "', `position` = " . $position . ", `status` = " . $status . " WHERE `id` = " . $id . " LIMIT 1;";
+function updateMember($id, $name, $ulink, $position, $status, $major, $student_id){
+	$query  = "UPDATE members SET `name` = '" . $name . "', `ulink` = '" . $ulink . "', ";
+	$query .= "`position` = " . $position . ", `status` = " . $status . ", `major` = " . $major . ", `student_id` = " . $student_id;
+	$query .= " WHERE `id` = " . $id . " LIMIT 1;";
 	$result = mysql_query($query);
 }
 

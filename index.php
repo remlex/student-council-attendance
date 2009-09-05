@@ -90,7 +90,7 @@ switch(db_clean_text($_GET['page'])){
 		//secureform_test($verify_key, $verify_action)
 		//secureform_test_pk($verify_key, $verify_action, $pk)
 		
-		//PROCESS INDIVIDUAL REQUESTSs
+		//PROCESS INDIVIDUAL REQUESTS
 		switch(db_clean_text($_POST['action'])){
 			
 			case 'addSemester': //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -203,13 +203,15 @@ switch(db_clean_text($_GET['page'])){
 			$formData['ulink'] = db_clean_text($_POST['ulink']);
 			$formData['position'] = db_clean_int($_POST['position']);
 			$formData['status'] = db_clean_int($_POST['status']);
+			$formData['major'] = db_clean_int($_POST['major']);
+			$formData['student_id'] = db_clean_int($_POST['student_id']);
 			//Verify form
 			if(!secureform_test($verify_key, $verify_action)){
 				$smarty->assign("url","./index.php?page=addMember");
 				$smarty->display('redirectError.tpl');
 				exit();
 			}
-			addMember($formData['name'], $formData['ulink'], $formData['position'], $formData['status']);
+			addMember($formData['name'], $formData['ulink'], $formData['position'], $formData['status'], $formData['major'], $formData['student_id']);
 			if($formData['position'] == 20){
 				$smarty->assign("url","./index.php?page=listMembers&inactive=1");
 			}
@@ -225,13 +227,15 @@ switch(db_clean_text($_GET['page'])){
 			$formData['ulink'] = db_clean_text($_POST['ulink']);
 			$formData['position'] = db_clean_int($_POST['position']);
 			$formData['status'] = db_clean_int($_POST['status']);
+			$formData['major'] = db_clean_int($_POST['major']);
+			$formData['student_id'] = db_clean_int($_POST['student_id']);
 			//Verify form
 			if(!secureform_test_pk($verify_key, $verify_action, $formData['id'])){
 				$smarty->assign("url","./index.php?page=updateMember&id=" . $formData['id']);
 				$smarty->display('redirectError.tpl');
 				exit();
 			}
-			updateMember($formData['id'], $formData['name'], $formData['ulink'], $formData['position'], $formData['status']);
+			updateMember($formData['id'], $formData['name'], $formData['ulink'], $formData['position'], $formData['status'], $formData['major'], $formData['student_id']);
 			if($formData['position'] == 20){
 				$smarty->assign("url","./index.php?page=listMembers&inactive=1");
 			}
@@ -571,6 +575,7 @@ switch(db_clean_text($_GET['page'])){
 	else{
 		$smarty->assign("inactive", 0);
 	}
+	$smarty->assign("majors", retreiveMajorValues());
 	$smarty->assign("positions", retreivePositionValues());
 	$smarty->assign("status", retreiveStatusValues());
 	$smarty->display('addMember.tpl');
@@ -595,6 +600,9 @@ switch(db_clean_text($_GET['page'])){
 	$smarty->assign("current_ulink", $member['ulink']);
 	$smarty->assign("current_position", $member['position']);
 	$smarty->assign("current_status", $member['status']);
+	$smarty->assign("current_major", $member['major']);
+	$smarty->assign("current_student_id", $member['student_id']);
+	$smarty->assign("majors", retreiveMajorValues());
 	$smarty->assign("positions", retreivePositionValues());
 	$smarty->assign("status", retreiveStatusValues());
 	

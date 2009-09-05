@@ -24,6 +24,10 @@
 	<br />
 	Default Status:<select name=status>{html_options options=$status selected=1}</select>
 	<br />
+	Major: <select name=major>{html_options options=$majors selected=1}</select>
+	<br />
+	Student ID: <INPUT type="text" name="student_id">
+	<br />
 	
 	<INPUT type="hidden" name="key" value="{php}echo secureform_add('addMember', 60){/php}">
 	<input type="hidden" name="action" value="addMember">
