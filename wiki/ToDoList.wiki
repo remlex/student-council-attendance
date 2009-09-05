@@ -1,5 +1,3 @@
 = Tasks That Need to Be Done =
   * Separate the code in the include file into multiple files.
-  * Include a copy of the database structure in the repository.
-  * Links in the reports were hard coded.  These need to be able to be set in a configuration file.  They should all default to functioning directly with the display.php file.
   * Document, document, document!
