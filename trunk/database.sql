@@ -560,6 +560,36 @@ CREATE TABLE `form` (
 
 
 --
+-- Definition of table `major`
+--
+
+DROP TABLE IF EXISTS `major`;
+CREATE TABLE `major` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `major`
+--
+
+/*!40000 ALTER TABLE `major` DISABLE KEYS */;
+INSERT INTO `major` (`id`,`name`) VALUES 
+ (1,'Unknown'),
+ (2,'Bioengineering'),
+ (3,'Chemical Engineering'),
+ (4,'Civil and Environmental Engineering'),
+ (5,'Computer Engineering & Computer Science'),
+ (6,'Electrical and Computer Engineering'),
+ (7,'Engineering Fundamentals'),
+ (8,'Industrial Engineering'),
+ (9,'Mechanical Engineering'),
+ (10,'Non-Speed');
+/*!40000 ALTER TABLE `major` ENABLE KEYS */;
+
+
+--
 -- Definition of table `meeting_type`
 --
 
@@ -622,13 +652,17 @@ CREATE TABLE `members` (
   `ulink` varchar(45) NOT NULL,
   `position` int(10) unsigned NOT NULL DEFAULT '20',
   `status` int(10) unsigned NOT NULL DEFAULT '1',
+  `major` int(10) unsigned NOT NULL DEFAULT '1',
+  `student_id` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `Unique_Ulink` (`ulink`) USING BTREE,
   KEY `FK_status_m` (`status`),
   KEY `FK_position` (`position`) USING BTREE,
+  KEY `FK_major_m` (`major`),
+  CONSTRAINT `FK_major_m` FOREIGN KEY (`major`) REFERENCES `major` (`id`),
   CONSTRAINT `FK_position_m` FOREIGN KEY (`position`) REFERENCES `position` (`id`),
   CONSTRAINT `FK_status_m` FOREIGN KEY (`status`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
