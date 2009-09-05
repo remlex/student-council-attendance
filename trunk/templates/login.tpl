@@ -12,7 +12,7 @@
 	
 	Username: <INPUT type="text" name="uname">
 	<br />
-	Password: <INPUT type="text" name="passwd">
+	Password: <INPUT type="password" name="passwd">
 	<br />
 	
 	<INPUT type="hidden" name="key" value="{php}echo secureform_add('authenticate', 4){/php}">
