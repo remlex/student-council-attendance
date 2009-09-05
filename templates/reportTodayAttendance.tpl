@@ -1,3 +1,4 @@
+{config_load file=display.links.conf}
 
 <html>
 
@@ -91,6 +92,51 @@
 </table>
 
 {/if}
+
+
+
+{assign var=title_bg_color value=E6E6E6}
+
+<br /><br /><br />
+
+
+<h1>Achievements Awarded Since Last General Business Meeting</h1>
+<table border=1 cellspacing=0 cellpadding=3>
+	<tr bgcolor="#{$title_bg_color}">
+		<td>Member</td>
+		<td>Achievement</td>
+		<td>Description</td>
+		<td>Points</td>
+	</tr>
+	{foreach from=$newAchievements name=foo item=achievementAward}
+		<tr>
+			<td>{$achievementAward.member}</td>
+			<td>{$achievementAward.achievement}</td>
+			<td>{$achievementAward.description}</td>
+			<td>{$achievementAward.points}</td>
+		</tr>
+	{/foreach}
+</table>
+
+
+
+<br /><br /><br />
+
+
+<h1>Members Who Still Need to Join A Committee</h1>
+<table border=1 cellspacing=0 cellpadding=3>
+	<tr bgcolor="#{$title_bg_color}">
+		<td>Member</td>
+		<td>Position</td>
+	</tr>
+	{foreach from=$joinCommittee name=foo item=committee}
+		<tr>
+			<td>{$committee.name}</td>
+			<td>{$committee.position}</td>
+		</tr>
+	{/foreach}
+</table>
+
 
 </center>
 </body>

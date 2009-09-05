@@ -312,6 +312,42 @@ function report_today_meeting(){
 	return $row;
 }
 
+function report_todays_need_to_join_committee(){
+	$query  = "SELECT m.name, p.name position ";
+	$query .= "FROM `members` m ";
+	$query .= "JOIN `position` p ON m.position = p.id ";
+	$query .= "WHERE m.id NOT IN( ";
+	$query .= "  SELECT Distinct(m) FROM ( ";
+	$query .= "    SELECT member m FROM committee_membership c ";
+	$query .= "    UNION ";
+	$query .= "  SELECT manager m FROM committees c) tmpa) ";
+	$query .= "AND m.position != 17 AND m.position != 18 AND m.position != 20 ";
+	$query .= "ORDER BY m.position, m.name;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_assoc($result)){
+		$val[] = $row;
+	}
+	return $val;
+}
+
+function report_todays_new_achievement(){
+	$query  = "SELECT m.name member, a.name achievement, a.description, a.points FROM achievements_earned e ";
+	$query .= "JOIN achievements a ON e.achievement = a.id ";
+	$query .= "JOIN members m ON e.member = m.id ";
+	$query .= "WHERE e.updated > ( ";
+	$query .= "  SELECT mdate FROM meetings WHERE meeting_type = 1 ";
+	$query .= "  ORDER BY mdate DESC ";
+	$query .= "  LIMIT 1,1) ";
+	$query .= "ORDER BY m.position, m.name, a.name;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_assoc($result)){
+		$val[] = $row;
+	}
+	return $val;
+}
+
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //RECENTLY EARNED ACHIEVEMENTS
@@ -366,7 +402,7 @@ function report_recently_earned_achievements(){
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-//RECENTLY EARNED ACHIEVEMENTS
+//PERFECT ATTENDANCE
 function report_perfect_attendance_semester(){
 	$query = "SELECT CONCAT_WS(' ',`semester`, `year`) semester FROM semester WHERE startday < NOW() ORDER BY startday DESC LIMIT 1;";
 	$result = mysql_query($query);
@@ -536,6 +572,9 @@ else if(isset($_GET['today'])){
 	$smarty->assign("attendance", report_todays_attendance());
 	$smarty->assign("quorum", report_todays_quorum());
 	$smarty->assign("meeting", report_today_meeting());
+	
+	$smarty->assign("newAchievements", report_todays_new_achievement());
+	$smarty->assign("joinCommittee", report_todays_need_to_join_committee());
 	
 	//Template
 	$smarty->display("reportTodayAttendance.tpl");
