@@ -32,7 +32,7 @@ include_once ("./common/include.display.todaysattendance.php");
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //RECENTLY EARNED ACHIEVEMENTS
-include_once ("./common/include.display/recentachievements.php");
+include_once ("./common/include.display.recentachievements.php");
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //PERFECT ATTENDANCE
@@ -50,16 +50,32 @@ include_once ("./common/include.display.charts.php");
 // CONTROLLER
 //----------------------------------------------------------------------------------------------------------------------------------//
 if(isset($_GET['charts'])){
-	echo  '<img src="' . report_chart_major_pi_chart() . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(10) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(11) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(12) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(13) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(14) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(15) . '" /><br />';
-	echo  '<img src="' . report_chart_member_breakdown(19) . '" /><br />';
-	echo  '<img src="' . report_chart_committee_pi_chart() . '" /><br />';
+	$smarty->assign("all_members", report_chart_major_pie_chart());
+	$smarty->assign("committee_involvement", report_chart_committee_pie_chart());
 	
+	$smarty->assign("members_first_count", report_chart_major_member_count(10));
+	$smarty->assign("members_first", report_chart_member_breakdown(10));
+	
+	$smarty->assign("members_second_count", report_chart_major_member_count(11));
+	$smarty->assign("members_second", report_chart_member_breakdown(11));
+	
+	$smarty->assign("members_third_count", report_chart_major_member_count(12));
+	$smarty->assign("members_third", report_chart_member_breakdown(12));
+	
+	$smarty->assign("members_forth_count", report_chart_major_member_count(13));
+	$smarty->assign("members_forth", report_chart_member_breakdown(13));
+	
+	$smarty->assign("members_fifth_count", report_chart_major_member_count(14));
+	$smarty->assign("members_fifth", report_chart_member_breakdown(14));
+	
+	$smarty->assign("members_phd_count", report_chart_major_member_count(15));
+	$smarty->assign("members_phd", report_chart_member_breakdown(15));
+	
+	$smarty->assign("member_standing", report_chart_current_member_standing());
+	
+	$smarty->assign("member_distribution", report_chart_member_distribution());
+	//Template
+	$smarty->display("reportCharts.tpl");
 }
 else if(isset($_GET['achievements'])){
 	$smarty->assign("achievements_active", report_achievement_list_active());
