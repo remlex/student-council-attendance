@@ -81,6 +81,7 @@ function report_member_details($id){
 
 
 
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //COMMITTEES
 function report_committee_manager($id){
@@ -500,10 +501,123 @@ function report_meeting($id){
 	return $val;
 }
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//GOOGLE CHARTS
+
+function report_chart_member_breakdown($position){
+	$query = "SELECT `name` FROM `position` WHERE `id` = " . $position . ";";
+	$result = mysql_query($query);
+	$row = mysql_fetch_row($result);
+	$positionname =  str_replace(" ", "+", $row[0]);;
+	
+	$query  = "SELECT j.name name, count(*) number ";
+	$query .= "FROM members m ";
+	$query .= "JOIN major j ON m.major = j.id ";
+	$query .= "JOIN position p ON m.position = p.id ";
+	$query .= "WHERE p.id = " . $position . " ";
+	$query .= "GROUP BY p.name, j.name;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_assoc($result)){
+		$val[] = $row;
+	}
+	//Generate the URL
+	$url = "http://chart.apis.google.com/chart?cht=p&chco=FF0000&chtt=" . $positionname . "&chd=t:";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['number'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= ",";
+		}
+	}
+	$url .="&chs=400x200&chl=";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['name'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= "|";
+		}
+	}
+	return $url;
+}
+
+function report_chart_committee_pi_chart(){
+	$query  = "SELECT 'Not in a Committee' name, COUNT(DISTINCT(m.id)) number ";
+	$query .= "FROM members m ";
+	$query .= "LEFT JOIN committee_membership c ON m.id = c.member ";
+	$query .= "WHERE c.id IS NULL ";
+	$query .= "  AND m.position != 20 && m.position != 17 && m.position != 18 ";
+	$query .= "UNION ";
+	$query .= "SELECT 'In a Committee' name, COUNT(DISTINCT(m.id)) number ";
+	$query .= "FROM members m ";
+	$query .= "JOIN committee_membership c ON m.id = c.member ";
+	$query .= "WHERE  m.position != 20 && m.position != 17 && m.position != 18;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_assoc($result)){
+		$val[] = $row;
+	}
+	//Generate the URL
+	$url = "http://chart.apis.google.com/chart?cht=p&chco=FF0000&chtt=Committee+Membership&chd=t:";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['number'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= ",";
+		}
+	}
+	$url .="&chs=400x200&chl=";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['name'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= "|";
+		}
+	}
+	return $url;
+}
+
+function report_chart_major_pi_chart(){
+	$query = "SELECT j.name, COUNT(*) as number ";
+	$query .= "FROM members m ";
+	$query .= "JOIN major j ON m.major = j.id ";
+	$query .= "WHERE m.position != 20 && m.position != 17 && m.position != 18 ";
+	$query .= "GROUP BY j.name;";
+	$result = mysql_query($query);
+	$val = array();
+	while($row = mysql_fetch_assoc($result)){
+		$val[] = $row;
+	}
+	//Generate the URL
+	$url = "http://chart.apis.google.com/chart?cht=p&chco=FF0000&chtt=Council+Members+by+Major&chd=t:";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['number'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= ",";
+		}
+	}
+	$url .="&chs=400x200&chl=";
+	for($i = 0; $i < sizeof($val); $i++){
+		$url .= $val[$i]['name'];
+		if( ($i + 1) < sizeof($val) ){
+			$url  .= "|";
+		}
+	}
+	return $url;
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------//
 // CONTROLLER
 //----------------------------------------------------------------------------------------------------------------------------------//
-if(isset($_GET['achievements'])){
+if(isset($_GET['charts'])){
+	echo  '<img src="' . report_chart_major_pi_chart() . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(10) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(11) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(12) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(13) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(14) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(15) . '" /><br />';
+	echo  '<img src="' . report_chart_member_breakdown(19) . '" /><br />';
+	echo  '<img src="' . report_chart_committee_pi_chart() . '" /><br />';
+	
+}
+else if(isset($_GET['achievements'])){
 	$smarty->assign("achievements_active", report_achievement_list_active());
 	$smarty->assign("achievements_locked", report_achievement_list_locked());
 	
