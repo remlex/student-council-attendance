@@ -529,9 +529,9 @@ function report_chart_member_breakdown($position){
 			$url  .= ",";
 		}
 	}
-	$url .="&chs=400x200&chl=";
+	$url .="&chs=500x200&chl=";
 	for($i = 0; $i < sizeof($val); $i++){
-		$url .= $val[$i]['name'];
+		$url .= str_replace("&", "and", str_replace(" ", "+", $val[$i]['name']));
 		if( ($i + 1) < sizeof($val) ){
 			$url  .= "|";
 		}
@@ -563,9 +563,9 @@ function report_chart_committee_pi_chart(){
 			$url  .= ",";
 		}
 	}
-	$url .="&chs=400x200&chl=";
+	$url .="&chs=500x200&chl=";
 	for($i = 0; $i < sizeof($val); $i++){
-		$url .= $val[$i]['name'];
+		$url .= str_replace("&", "and", str_replace(" ", "+", $val[$i]['name']));
 		if( ($i + 1) < sizeof($val) ){
 			$url  .= "|";
 		}
@@ -592,9 +592,9 @@ function report_chart_major_pi_chart(){
 			$url  .= ",";
 		}
 	}
-	$url .="&chs=400x200&chl=";
+	$url .="&chs=500x200&chl=";
 	for($i = 0; $i < sizeof($val); $i++){
-		$url .= $val[$i]['name'];
+		$url .= str_replace("&", "and", str_replace(" ", "+", $val[$i]['name']));
 		if( ($i + 1) < sizeof($val) ){
 			$url  .= "|";
 		}
