@@ -1,3 +1,4 @@
 = Tasks That Need to Be Done =
-  * Separate the code in the include file into multiple files.
+  * Database has been updated and changes have not been posted.  Specifically the new column in the major table called shortname.
+  * Separate the code in the include file into multiple files for the include.php file.
   * Document, document, document!
