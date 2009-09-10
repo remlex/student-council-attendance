@@ -71,6 +71,9 @@ if(isset($_GET['charts'])){
 	$smarty->assign("members_phd_count", report_chart_major_member_count(15));
 	$smarty->assign("members_phd", report_chart_member_breakdown(15));
 	
+	$smarty->assign("members_mal_count", report_chart_major_member_count(19));
+	$smarty->assign("members_mal", report_chart_member_breakdown(19));
+	
 	$smarty->assign("member_standing", report_chart_current_member_standing());
 	
 	$smarty->assign("member_distribution", report_chart_member_distribution());
