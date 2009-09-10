@@ -11,7 +11,10 @@
 		<td bgcolor="#dddddd" style="font-weight:bold;">Position:</td>
 		<td bgcolor="#eeeeee">{$member_position}</td>
 	</tr>
-	
+	<tr >
+		<td bgcolor="#dddddd" style="font-weight:bold;">Major:</td>
+		<td bgcolor="#eeeeee">{$member_major}</td>
+	</tr>
 	<tr >
 		<td bgcolor="#dddddd" style="font-weight:bold;">Council Status:</td>
 		{if $member_status == "Co-Op"}
@@ -22,7 +25,6 @@
 		<td bgcolor="#eeeeee">Normal</td>
 		{/if}
 	</tr>
-	
 	<tr >
 		<td bgcolor="#dddddd" style="font-weight:bold;">Committees Serving On:</td>
 		<td bgcolor="#eeeeee">{$committee_count}</td>
