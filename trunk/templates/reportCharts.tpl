@@ -50,3 +50,10 @@
 <br />
 <hr />
 {/if}
+
+
+{if $members_mal_count > 0}
+<img src="{$members_mal}" />
+<br />
+<hr />
+{/if}
