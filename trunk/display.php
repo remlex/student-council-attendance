@@ -154,6 +154,7 @@ else if(isset($_GET['id'])){
 	$smarty->assign("member_name", $member_info['name']);
 	$smarty->assign("member_position", $member_info['position']);
 	$smarty->assign("member_status", $member_info['status']);
+	$smarty->assign("member_major", $member_info['major']);
 	
 	//Attendance information
 	$smarty->assign("member_summary", report_member_summary($member_id));

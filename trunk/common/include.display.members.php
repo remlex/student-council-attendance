@@ -44,11 +44,11 @@ function report_member_summary($id){
 }
 
 function report_member_info($id){
-	//$query = "SELECT `name`, `position`, `status` FROM v_members WHERE `id` = " . $id . ";";
-	$query  = "SELECT m.name, p.name position, s.name status ";
+	$query  = "SELECT m.name, p.name position, s.name status, j.name major ";
 	$query .= "FROM `members` m ";
 	$query .= "JOIN `position` p ON m.`position` = p.id ";
 	$query .= "JOIN `status` s ON m.`status` = s.id ";
+	$query .= "JOIN `major` j ON m.major = j.id ";
 	$query .= "WHERE m.id = " . $id . ";";
 	$result = mysql_query($query);
 	$row = mysql_fetch_assoc($result);
