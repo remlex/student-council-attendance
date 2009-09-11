@@ -128,6 +128,13 @@ else if(isset($_GET['achievement'])){
 	//Template
 	$smarty->display("reportAchievement.tpl");
 }
+else if(isset($_GET['committee'])){
+	$committee = db_clean_int($_GET['committee']);
+	$smarty->assign("committees", report_committee_membership_single($committee));
+	
+	//Template
+	$smarty->display("reportCommittees.tpl");
+}
 else if(isset($_GET['committees'])){
 	$smarty->assign("committees", report_committee_membership());
 	
