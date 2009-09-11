@@ -187,9 +187,10 @@
 						{#images_committees#}
 					{elseif $committee_membership[mysec].is_member == 1}
 						<FORM action="./index.php?page=process" method="post">
-							<INPUT type="hidden" name="key" value="{php}echo secureform_add_pk('deleteCommitteeMembership', 60, $this->get_template_vars('committee_membership_id')){/php}">
-							<input type="hidden" name="id" value="{$committee_membership_id}">
+							<INPUT type="hidden" name="key" value="{php}echo secureform_add_pk('deleteCommitteeMembership', 60, $this->get_template_vars('current_pk')){/php}">
+							<input type="hidden" name="id" value="{$current_pk}">
 							<input type="hidden" name="member" value="{$current_id}">
+							<input type="hidden" name="sendBackToMember" value="yes">
 							<input type="hidden" name="action" value="deleteCommitteeMembership">
 							<INPUT type="image" src="{#url_delete#}">
 						</FORM>

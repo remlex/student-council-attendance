@@ -391,11 +391,12 @@ switch(db_clean_text($_GET['page'])){
 				$smarty->display('redirectError.tpl');
 				exit();
 			}
-			deleteCommitteeMembership($formData['id']);
 			if(isset($_POST['member'])){//If this page was called from the member's page, send them back there
+				deleteCommitteeMembershipByMember($formData['id'], db_clean_int($_POST['member']));
 				$smarty->assign("url","./index.php?page=updateMember&id=" . db_clean_int($_POST['member']) . "#fragment-4");
 			}
 			else{//This page was called from an achievement page, send them back there
+				deleteCommitteeMembership($formData['id']);
 				$smarty->assign("url","./index.php?page=listCommitteeMembership&id=" . $committee);
 			}
 			

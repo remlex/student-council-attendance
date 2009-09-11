@@ -779,7 +779,10 @@ function deleteCommitteeMembership($id){
 	$result = mysql_query($query);
 }
 
-
+function deleteCommitteeMembershipByMember($committee, $member){
+	$query = "DELETE FROM committee_membership WHERE `committee` = " . $committee . " AND `member` = " . $member . " LIMIT 1;";
+	$result = mysql_query($query);
+}
 
 
 
