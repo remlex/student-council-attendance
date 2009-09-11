@@ -47,7 +47,9 @@ function report_committee_categories(){
 function report_committee_membership(){
 	$committees = report_committee_categories();
 	for($i = 0; $i < sizeof($committees); $i++){
-		$query = "SELECT m.`id`, m.`name` member, p.`name` position FROM committee_membership c JOIN members m ON c.member = m.id JOIN position p on m.position = p.id WHERE c.`committee` = " . $committees[$i]['id'] . " ORDER BY m.position, m.name;";
+		$query  = "SELECT m.`id`, m.`name` member, p.`name` position FROM committee_membership c ";
+		$query .= "JOIN members m ON c.member = m.id JOIN position p on m.position = p.id WHERE c.`committee` = " . $committees[$i]['id'];
+		$query .= " ORDER BY m.position, m.name;";
 		$result = mysql_query($query);
 		$val = array();
 		while($row = mysql_fetch_assoc($result)){
@@ -58,5 +60,25 @@ function report_committee_membership(){
 	return $committees;
 }
 
+function report_committee_membership_single($committee){
+	$committees = report_committee_categories();
+	for($i = 0; $i < sizeof($committees); $i++){
+		//Only include the one committee
+		if($committees[$i]['id'] == $committee){
+			$query  = "SELECT m.`id`, m.`name` member, p.`name` position FROM committee_membership c ";
+			$query .= "JOIN members m ON c.member = m.id JOIN position p on m.position = p.id WHERE c.`committee` = " . $committees[$i]['id'];
+			$query .= " ORDER BY m.position, m.name;";
+			$result = mysql_query($query);
+			$val = array();
+			while($row = mysql_fetch_assoc($result)){
+				$val[] = $row;
+			}
+			$committees[$i]['members'] = $val;
+			//Only return the sub segment of the committee array (lets us use the same template)
+			$sub[0] = $committees[$i];
+			return $sub;
+		}
+	}
+}
 
 ?>
