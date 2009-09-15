@@ -1,5 +1,9 @@
 {config_load file=display.links.conf}
 
+{assign var=color_good value=9AFF66}
+{assign var=color_warning value=FFFF33}
+{assign var=color_bad value=FF6666}
+
 <table>
 {strip}
 	<tr bgcolor="#cccccc" style="font-weight:bold;">
@@ -20,17 +24,17 @@
 		{elseif $members[mysec].committee_head+$members[mysec].committees > 0}
 		<td>{$members[mysec].committee_head+$members[mysec].committees}</td>
 		{else}
-			<td bgcolor="#FF0000">None!</td>
+			<td bgcolor="#{$color_bad}">None!</td>
 		{/if}
 		<td>{$members[mysec].total_achievements} / {$members[mysec].council_points}
 		{if $members[mysec].position == "Member at Large"}
 			<td bgcolor="#7ACAFF">N/A</td>
 		{elseif $members[mysec].trouble == 1}
-			<td bgcolor="#FF0000">Bad</td>
+			<td bgcolor="#{$color_bad}">Bad</td>
 		{elseif $members[mysec].warning == 1}
-			<td bgcolor="#FFFF00">Warning</td>
+			<td bgcolor="#{$color_warning}">Warning</td>
 		{else}
-			<td bgcolor="#00FF00">Good</td>
+			<td bgcolor="#{$color_good}">Good</td>
 		{/if}
 		
 	</tr>

@@ -1,5 +1,9 @@
 {config_load file=display.links.conf}
 
+{assign var=color_good value=9AFF66}
+{assign var=color_warning value=FFFF33}
+{assign var=color_bad value=FF6666}
+
 <h2>Member Information</h2>
 <table>
 {strip}
@@ -44,17 +48,10 @@
 
 
 
-
-
-
-
-
 <h2>Achievements</h2>
 {if $achievement_count == 0}
 <b>No achievements earned yet.</b>
 {else}
-
-
 {foreach from=$achievements_awarded item=category}
 {if $category.awarded|@count > 0}
 	<h3>{$category.name}</h3>
@@ -96,13 +93,8 @@
 		
 		
 	</table>
-	
-	
 {/if}
 {/foreach}
-
-
-
 {/if}
 
 
@@ -130,31 +122,7 @@
 {/section}
 </table>
 {/if}
-
 <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -180,10 +148,6 @@
 {/section}
 </table>
 {/if}
-
-
-
-
 
 
 
@@ -221,12 +185,7 @@
 
 
 
-
-
-
-
 <h2>Attendance</h2>
-
 <h3>Summary</h3>
 {if $member_summary|@count == 0}
 <b>No attendance records for this member yet.</b>
@@ -259,20 +218,17 @@
 		{if $member_summary[mysec].position == "Member at Large"}
 			<td bgcolor="#7ACAFF">N/A</td>
 		{elseif $member_summary[mysec].trouble == 1}
-			<td bgcolor="#FF0000">Bad</td>
+			<td bgcolor="#{$color_bad}">Bad</td>
 		{elseif $member_summary[mysec].warning == 1}
-			<td bgcolor="#FFFF00">Warning</td>
+			<td bgcolor="#{$color_warning}">Warning</td>
 		{else}
-			<td bgcolor="#00FF00">Good</td>
+			<td bgcolor="#{$color_good}">Good</td>
 		{/if}
 	</tr>
 {/strip}
 {/section}
 </table>
 {/if}
-
-
-
 
 
 
@@ -310,22 +266,3 @@
 {/section}
 </table>
 {/if}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
