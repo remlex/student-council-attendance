@@ -563,10 +563,12 @@ CREATE TABLE `form` (
 -- Definition of table `major`
 --
 
+
 DROP TABLE IF EXISTS `major`;
 CREATE TABLE `major` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `shortname` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
@@ -994,8 +996,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 
 DROP TABLE IF EXISTS `v_standing_b`;
 DROP VIEW IF EXISTS `v_standing_b`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_standing_b` AS select `s`.`id` AS `id`,`s`.`semester` AS `semester`,`s`.`meeting` AS `meeting`,`s`.`meeting_type` AS `meeting_type`,`s`.`mdate` AS `mdate`,`s`.`member` AS `member`,`s`.`vote` AS `vote`,`s`.`status` AS `status`,ifnull((select `v_standing_a`.`status` AS `status` from `v_standing_a` where ((`v_standing_a`.`meeting_type` = `s`.`meeting_type`) and (`v_standing_a`.`member` = `s`.`member`) and (`v_standing_a`.`mdate` > `s`.`mdate`)) order by `v_standing_a`.`mdate` limit 0,1),0) AS `status2`,ifnull((select `v_standing_a`.`status` AS `status` from `v_standing_a` where ((`v_standing_a`.`meeting_type` = `s`.`meeting_type`) and (`v_standing_a`.`member` = `s`.`member`) and (`v_standing_a`.`mdate` > `s`.`mdate`)) order by `v_standing_a`.`mdate` limit 1,1),0) AS `status3` from `v_standing_a` `s` order by `s`.`mdate`;
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_standing_b` AS select `s`.`id` AS `id`,`s`.`semester` AS `semester`,`s`.`meeting` AS `meeting`,`s`.`meeting_type` AS `meeting_type`,`s`.`mdate` AS `mdate`,`s`.`member` AS `member`,`s`.`vote` AS `vote`,`s`.`status` AS `status`,ifnull((select `a`.`status` AS `status` from `v_standing_a` `a` where ((`a`.`meeting_type` = `s`.`meeting_type`) and (`a`.`member` = `s`.`member`) and (`a`.`semester` = `s`.`semester`) and (`a`.`mdate` > `s`.`mdate`)) order by `a`.`mdate` limit 0,1),0) AS `status2`,ifnull((select `a`.`status` AS `status` from `v_standing_a` `a` where ((`a`.`meeting_type` = `s`.`meeting_type`) and (`a`.`member` = `s`.`member`) and (`a`.`semester` = `s`.`semester`) and (`a`.`mdate` > `s`.`mdate`)) order by `a`.`mdate` limit 1,1),0) AS `status3` from `v_standing_a` `s` order by `s`.`mdate`
 --
 -- Definition of view `v_standing_c`
 --
