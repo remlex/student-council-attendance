@@ -6,6 +6,11 @@
 	<h2>Directors Meetings</h2>
 {/if}
 
+{assign var=color_good value=9AFF66}
+{assign var=color_warning value=FFFF33}
+{assign var=color_bad value=FF6666}
+
+
 {foreach from=$semesters item=semester}
 {if $semester.meetings|@count > 0}
 	<h3>{$semester.semester} {$semester.year}</h3>
@@ -30,9 +35,9 @@
 			<td>{$meeting.TotalPresent} of {$meeting.TotalMembers}</td>
 			<td>{$meeting.VotingPresent} of {$meeting.VotingMembers}</td>
 			{if $meeting.QuorumTest == 1}
-				<td bgcolor="#00FF00">{$meeting.Quorum}</td>
+				<td bgcolor="#{$color_good}">{$meeting.Quorum}</td>
 			{else}
-				<td bgcolor="#FF0000">{$meeting.Quorum}</td>
+				<td bgcolor="#{$color_bad}">{$meeting.Quorum}</td>
 			{/if}
 		<tr>
 		{/strip}
