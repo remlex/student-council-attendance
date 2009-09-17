@@ -1,5 +1,4 @@
 #labels Featured
 = Tasks That Need to Be Done =
-  * Separate the code in the include file into multiple files for the include.php file.
   * The database.sql file may not be accurate and up to date and needs to be checked to make sure it is accurate.
   * Document, document, document!
