@@ -83,10 +83,9 @@
 {/literal}
 
 {literal}
-
-  <script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.3.2.js"></script>
-  <script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.core.js"></script>
-  <script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.tabs.js"></script>
+  <script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.4.1.js"></script>
+  <script type="text/javascript" src="http://jqueryui.com/latest/ui/jquery.ui.core.js"></script>
+  <script type="text/javascript" src="http://jqueryui.com/latest/ui/jquery.ui.tabs.js"></script>
 {/literal}
 
 </HEAD>
