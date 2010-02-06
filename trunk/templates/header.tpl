@@ -25,80 +25,21 @@
 {config_load file=images.conf}
 {config_load file=images.conf section="home_nav"}
 <HTML>
-<HEAD>
-<TITLE>{$title} - {$Name}</TITLE>
-{literal}
-<style type="text/css">
-	img{
-		border:none;
-	}
-	
-	a{
-		text-decoration: none;
-	}
-
-	form{
-		display: inline;
-	}
-	
-	table{
-		width: 100%;
-	}
-	
-	h2{
-		background-color: lightgray;
-		color: darkred;
-		padding: 10px;
-	}
-	
-	table.maintable{
-		width: 800px;
-		border-width: 1px;
-		border-spacing: 10px;
-		border-style: outset;
-	}
-	
-	table.maintable tr.header{
-		background-color: darkred;
-	}
-	
-	table.maintable tr.header h1{
-		color: white;
-		text-align:center;
-	}
-	
-	table tr td.editdrill{
-		width: 65px;
-	}
-	
-	table tr td.singlepicture{
-		width: 30px;
-	}
-	
-	#quorumdetails table{
-		width:60%; margin-left:20%; margin-right:20%;
-	}
-</style>
-<link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.tabs.css" rel="stylesheet" />
-{/literal}
-
-{literal}
-  <script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.4.1.js"></script>
-  <script type="text/javascript" src="http://jqueryui.com/latest/ui/jquery.ui.core.js"></script>
-  <script type="text/javascript" src="http://jqueryui.com/latest/ui/jquery.ui.tabs.js"></script>
-{/literal}
-
-</HEAD>
+	<HEAD>
+		<TITLE>{$title} - {$Name}</TITLE>
+	{literal}
+		<link type="text/css" href="/static/ui.tabs.css" rel="stylesheet" />
+		<link type="text/css" href="/static/style.css" rel="stylesheet" />
+		<script type="text/javascript" src="/static/jquery-1.4.1.js"></script>
+		<script type="text/javascript" src="/static/jquery.ui.core.js"></script>
+		<script type="text/javascript" src="/static/jquery.ui.tabs.js"></script>
+	{/literal}
+	</HEAD>
 <BODY bgcolor="#ffffff">
-
-
 <table class="maintable" align="center">
-	{strip}
 	<tr class="header">
 		<td><h1>Speed School Student Council Management</h1></td>
 	</tr>
-	{/strip}
-	{strip}
 	<tr>
 		<td>
 			<center>
@@ -116,8 +57,5 @@
 			</center>
 		</td>
 	</tr>
-	
-	{/strip}
 	<tr>
 		<td>
-
