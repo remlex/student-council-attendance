@@ -1,0 +1,49 @@
+img{
+	border:none;
+}
+
+a{
+	text-decoration: none;
+}
+
+form{
+	display: inline;
+}
+
+table{
+	width: 100%;
+}
+
+h2{
+	background-color: lightgray;
+	color: darkred;
+	padding: 10px;
+}
+
+table.maintable{
+	width: 800px;
+	border-width: 1px;
+	border-spacing: 10px;
+	border-style: outset;
+}
+
+table.maintable tr.header{
+	background-color: darkred;
+}
+
+table.maintable tr.header h1{
+	color: white;
+	text-align:center;
+}
+
+table tr td.editdrill{
+	width: 65px;
+}
+
+table tr td.singlepicture{
+	width: 30px;
+}
+
+#quorumdetails table{
+	width:60%; margin-left:20%; margin-right:20%;
+}
