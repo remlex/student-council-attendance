@@ -26,8 +26,9 @@
  */
  
 //Include all of the essentials
+include_once("./configs/config.php");
+include_once($_CONFIG['smarty']);
 include_once("./include.php");
-require './libs/Smarty.class.php';
 
 //Smarty Stuff
 $smarty = new Smarty;
