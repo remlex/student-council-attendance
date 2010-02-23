@@ -35,5 +35,10 @@
 // Smarty Library
 $_CONFIG['smarty'] = '../libs/Smarty.class.php';
 
+// Javascript and CSS Resources
+$_CONFIG['jquery_ui_tabs_css'] = "http://jqueryui.com/latest/themes/base/ui.tabs.css";
+$_CONFIG['jquery_js'] = "http://jqueryui.com/latest/jquery-1.4.1.js";
+$_CONFIG['jquery_ui_core_js'] = "http://jqueryui.com/latest/ui/jquery.ui.core.js";
+$_CONFIG['jquery_ui_tabs_js'] = "http://jqueryui.com/latest/ui/jquery.ui.tabs.js";
 
 ?>

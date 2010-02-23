@@ -43,6 +43,10 @@ $smarty = new Smarty;
 $smarty->compile_check = true;
 //$smarty->debugging = true;
 $smarty->assign("Name", "");
+$smarty->assign("jquery_ui_tabs_css", $_CONFIG['jquery_ui_tabs_css']);
+$smarty->assign("jquery_js", $_CONFIG['jquery_js']);
+$smarty->assign("jquery_ui_core_js", $_CONFIG['jquery_ui_core_js']);
+$smarty->assign("jquery_ui_tabs_js", $_CONFIG['jquery_ui_tabs_js']);
 
 
 //----------------------------------------------------------------------------------------------------------------------------------//
