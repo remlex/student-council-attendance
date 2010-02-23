@@ -27,13 +27,11 @@
 <HTML>
 	<HEAD>
 		<TITLE>{$title} - {$Name}</TITLE>
-	{literal}
-		<link type="text/css" href="/static/ui.tabs.css" rel="stylesheet" />
-		<link type="text/css" href="/static/style.css" rel="stylesheet" />
-		<script type="text/javascript" src="/static/jquery-1.4.1.js"></script>
-		<script type="text/javascript" src="/static/jquery.ui.core.js"></script>
-		<script type="text/javascript" src="/static/jquery.ui.tabs.js"></script>
-	{/literal}
+		<link type="text/css" href="{$jquery_ui_tabs_css}" rel="stylesheet" />
+		<link type="text/css" href="./static/style.css" rel="stylesheet" />
+		<script type="text/javascript" src="{$jquery_js}"></script>
+		<script type="text/javascript" src="{$jquery_ui_core_js}"></script>
+		<script type="text/javascript" src="{$jquery_ui_tabs_js}"></script>
 	</HEAD>
 <BODY bgcolor="#ffffff">
 <table class="maintable" align="center">
