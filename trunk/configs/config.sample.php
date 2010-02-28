@@ -32,13 +32,26 @@
  * 
  ****************************************************************************/
 
-// Smarty Library
+// Smarty Library Location
 $_CONFIG['smarty'] = '../libs/Smarty.class.php';
 
 // Javascript and CSS Resources
+// These resources can be linked to remotely or downloaded to be locally hosted.
 $_CONFIG['jquery_ui_tabs_css'] = "http://jqueryui.com/latest/themes/base/ui.tabs.css";
 $_CONFIG['jquery_js'] = "http://jqueryui.com/latest/jquery-1.4.1.js";
 $_CONFIG['jquery_ui_core_js'] = "http://jqueryui.com/latest/ui/jquery.ui.core.js";
 $_CONFIG['jquery_ui_tabs_js'] = "http://jqueryui.com/latest/ui/jquery.ui.tabs.js";
+
+// Database Settings
+$_CONFIG['host'] = 'localhost';
+$_CONFIG['database'] = 'attendance';
+$_CONFIG['username'] = 'username';
+$_CONFIG['password'] = 'password';
+
+// Login Settings
+// Adding accounts: replace myusername and mypassword with desired username and password
+// Multiple accounts can be added by duplicating this line
+// There is only one account level so anyone with a login has full access to the application
+$_CONFIG['login']['myusername'] = "mypassword";
 
 ?>
