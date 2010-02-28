@@ -36,7 +36,6 @@ if(!isset($_GET['page'])){
 include_once("./configs/config.php");
 include_once($_CONFIG['smarty']);
 include_once("./include.php");
-include_once("./form.incl.php");
 
 //Smarty Stuff
 $smarty = new Smarty;
