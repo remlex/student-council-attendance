@@ -181,6 +181,7 @@ else if(isset($_GET['committees'])){
 	$smarty->display("reportCommittees.tpl");
 }
 else if(isset($_GET['today'])){
+	// We don't cache this page because it is used for real time information
 	$smarty->assign("attendance", report_todays_attendance());
 	$smarty->assign("quorum", report_todays_quorum());
 	$smarty->assign("meeting", report_today_meeting());
