@@ -1,8 +1,0 @@
-#labels Featured
-= Tasks That Need to Be Done =
-  * The database.sql file may not be accurate and up to date and needs to be checked to make sure it is accurate.
-  * Document, document, document!
-
-== Additional Features ==
-  * Add an optional "co-chair" to a committee
-  * Add the ability to mark which semester someone started school.  This will have a FK to the already present semester table
